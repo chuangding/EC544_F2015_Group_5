@@ -7,7 +7,7 @@ var inString2;
 var inString3;
 var inString4;
 var sum = 0.00;
-var i = 0;
+var i = 1;//wzy
 
 var portName = process.argv[2],
 portConfig = {
@@ -40,15 +40,15 @@ http.listen(3000, function(){
 sp.on("open", function () {
   console.log('open');
   sp.on('data', function(data) {
-    console.log('data received: ' + data);
-		inString1 = data.slice(7);
-		sum += (parseFloat)(inString1);
+    console.log('data received: ' + data);  //capture the messgae in serialport
+		inString1 = data.slice(7);   //figure out the number from string
+		sum += (parseFloat)(inString1);  // accumulate temperature of each sensors
 		io.emit("chat message", "Temperature: " + data);
-    while(i==4){
+    while(i==4){   //calculate the average Temperature
 				sum = sum / 4;
 				var num = new Number(sum);
 				//num.toFixed(2);
-				io.emit("chat message", "Average Temperature: " + num.toFixed(2));
+				io.emit("chat message", "Average Temperature: " + num.toFixed(2));  //keep two digits of the average temp
 				i=0;
 		    sum = 0.00;
     }
