@@ -7,7 +7,7 @@ var inString2;
 var inString3;
 var inString4;
 var sum = 0.00;
-var i = 1;
+var i = 1;//wzy
 
 var portName = process.argv[2],
 portConfig = {
